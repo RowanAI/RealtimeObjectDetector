@@ -8,7 +8,11 @@ First let's import some necessary libraries:
 """
 
 from gluoncv import model_zoo, data, utils
+import matplotlib;
+# matplotlib.use("TkAgg"); 
+matplotlib.use('PS')
 from matplotlib import pyplot as plt
+
 
 ######################################################################
 # Load a pretrained model
@@ -63,4 +67,5 @@ class_IDs, scores, bounding_boxs = net(x)
 
 ax = utils.viz.plot_bbox(img, bounding_boxs[0], scores[0],
                          class_IDs[0], class_names=net.classes)
-plt.show()
+# plt.show()
+plt.savefig("filname.png")
