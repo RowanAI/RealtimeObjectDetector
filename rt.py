@@ -6,6 +6,7 @@ import cv2
 import numpy as np
 import argparse
 import gluoncv as gcv
+import gluoncv.utils as utils
 import mxnet as mx
 import camera
 
@@ -35,15 +36,17 @@ def read_cam(video_capture):
                 break
             ret_val, frame = video_capture.read()
 
-            # frame = mx.nd.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).astype('uint8')
-            # rgb_nd, frame = gcv.data.transforms.presets.ssd.transform_test(frame, short=512, max_size=700)
+            frame = mx.nd.array(cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)).astype('uint8')
+            rgb_nd, frame = gcv.data.transforms.presets.ssd.transform_test(frame, short=512, max_size=700)
 
             # # Run frame through network
-            # class_IDs, scores, bounding_boxes = net(rgb_nd)
-
-            displayBuf = frame
-
+            class_IDs, scores, bounding_boxes = net(rgb_nd)
+            ax = utils.viz.plot_bbox(frame, bounding_boxes[0], scores[0],
+                         class_IDs[0], class_names=net.classes)
+            print(ax)
+            displayBuf = ax
             cv2.imshow(windowName, displayBuf)
+            cv2.waitKey(0)
 
     else:
         print("camera open failed")
