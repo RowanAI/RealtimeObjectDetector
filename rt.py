@@ -58,7 +58,7 @@ def read_cam(video_capture):
             # cv2.rectangle(frame,(384,0),(510,128),(0,255,0),3)
             displayBuf = frame
             cv2.imshow(windowName, displayBuf)
-            cv2.waitKey(10)
+            cv2.waitKey(0)
 
     else:
         print("camera open failed")
