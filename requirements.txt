@@ -25,7 +25,7 @@ numpy==1.14.6
 opencv-python==4.0.0.21
 pandas==0.23.4
 Pillow==5.4.1
-protobuf==3.6.1
+protobuf==3.15.0
 pycodestyle==2.4.0
 pylint==2.2.2
 pyparsing==2.3.1
